@@ -82,8 +82,8 @@ Det er generelt en god idé at bruge en form for krypteret forbindelse, så man 
 ### Rettigheder ###
 Det er vigtigt at sikre sig at skrive-rettighederne til “my.cnf” filen udelukkende tilhører root, ellers øges chancen for at uvedkommende får adgang MySQL serveren.
 
- Kilder:
- https://www.digitalocean.com/community/tutorials/how-to-secure-mysql-and-mariadb-databases-in-a-linux-vps
+ Kilder:  
+https://www.digitalocean.com/community/tutorials/how-to-secure-mysql-and-mariadb-databases-in-a-linux-vps
 
 https://dev.mysql.com/doc/refman/5.7/en/
 
