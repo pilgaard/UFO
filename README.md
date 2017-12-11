@@ -1,7 +1,7 @@
 # Forbedre sikkerheden på din MySQL database med nogle få ændringer #
 ## Introduktion ##
 
-MySQL er et open-source database management system, og bliver brugt hele verdenen over. Dette skyldes at den konsistent har høj performance, pålidelighed og er nem at bruge.
+MySQL er et open-source database management system, som bliver brugt hele verdenen over. Dette skyldes at det konsistent har høj performance, pålidelighed og er nem at bruge.
 Som mange andre produkter, der kommer out-of-the-box, er sikkerhed ikke en af første overvejelser når man installerer MySQL. Da førsteprioriteten er at få systemet op at køre, så virksomheden kan få værdi af det nye databasesystem.
 Hvis MySQL ikke bliver sikret i et produktionsmiljø, kan det have voldsomme konsekvenser for din data, da man aldrig kan vide hvem der får adgang til din data, hvilket med næsten garanti vil udvikle sig til for eksempel ransomware eller data theft.
 Det er derfor vigtigt at både MySQL og det miljø som MySQL findes i er sikret, så ovenstående kan undgås.
@@ -21,14 +21,14 @@ Først vil vi kigge på vores brugere, hvor de kan få adgang fra og om de har e
 
 ![select users](/images/users.png)
 
-Når vi kigger på vores brugere i vores database kan vi se, at alle brugere har et password, hvilket vi altid ønsker, dog kan vi se at vores admin bruger har et “%” udfra host, som er et wildcard, det betyder at brugeren kan benyttes fra enhver host adresse. Det er ikke det, vi ønsker. Vi vil i stedet for have at det er "localhost" eller ”127.0.0.1” 
+Når vi kigger på vores brugere i vores database kan vi se, at alle brugere har et password, hvilket vi altid ønsker. Dog kan vi se at vores admin bruger har et “%” udfra host, som er et wildcard. Det betyder at brugeren kan benyttes fra enhver host adresse. Det er ikke det, vi ønsker. Vi vil i stedet for have at det er "localhost" eller ”127.0.0.1” 
 
 Så hvis vi køre følgende kommando får vi denne besked:
 
 ![change output](/images/change.png)
 
 `mysql> UPDATE mysql.user SET Host='127.0.0.1' WHERE Host="%";`
-Vi kan at der nu er blevet foretaget en ændring, og hvis vi kører vores select statement igen vil vi kunne se at admin ikke længere har et procenttegn ud fra host.
+Vi kan nu se at der nu er blevet foretaget en ændring. Hvis vi kører vores select statement igen vil vi kunne se, at admin ikke længere har et procenttegn ud fra host.
 Nu har vi sørget for at vores database kun kan tilgås lokalt, og man skal derfor have adgang til serveren før man kan få adgang til databasen.
 ### Begræns brugernes rettigheder til databasen ###
 Efterfølgende vil vi oprette en bruger til at administrere vores database til vores webservice og tildele brugeren kun de privilegier, der er nødvendige. Disse rettigheder vil variere fra system til system. 
@@ -39,7 +39,7 @@ Det gør vi ved først at oprette en ny bruger som hedder lsd-user. Vi vil kun h
 
 ![createUser](/images/createUser.png)
 
-Herefter skal vi tildele vores bruger nogle rettigheder, uden at gøre dette vil vores bruger ikke kunne gøre noget som helst.
+Herefter skal vi tildele vores bruger nogle rettigheder. Uden at gøre dette vil vores bruger ikke kunne gøre noget som helst.
 Vi vil have at vores bruger at udføre select og insert statements på vores lsd database  
 
 `mysql> GRANT SELECT,INSERT ON lsd.* to 'lsd-user'@'localhost';`
@@ -51,9 +51,9 @@ Nu har vi fået tildelt rettigheder til vores lsd-user  og vi kan se dem ved at 
 `mysql> SHOW GRANTS for 'lsd-user'@'localhost';`
 
 ![grants](/images/grants.png)
-Nu når vi har oprettet en bruger med begrænset rettigheder kan vi i stedet for vores root bruger benytte vores lsd bruger til at lave kald fra vores web service til vores database, på denne måde kan vi bedre styre hvilke handlinger der kan laves på databasen udefra.   
+Nu når vi har oprettet en bruger med begrænset rettigheder, kan vi i stedet for vores root bruger, benytte vores lsd bruger til at lave kald fra vores web service til vores database, på denne måde kan vi bedre styre hvilke handlinger der kan laves på databasen udefra.   
 ## my.cnf ##
-Tilføjelser/ændringer under sektionen “[mysqld]” i konfigurationsfilen “my.cnf” i stien: 
+Tilføjelser/ændringer under sektionen “[mysqld]” i konfigurationsfilen “my.cnf” findes i stien: 
 “C:\Program Files\MySQL\MySQL Server” (windows)  
  “/etc/mysql/my.cnf” (linux) 
 ### Begræns adgang til databasen ###
@@ -61,7 +61,7 @@ Såfremt det ikke er nødvendigt at tilgå databasen direkte igennem internettet
 
 `skip-networking`
 
-Med denne kommando stopper MySQL med at lytte på alle TCP/IP porte og herefter benyttes MySQL’s socket-baseret forbindelse til at opnå forbindelse fra localhost, men det er også muligt at tvinge MySQL til udelukkende at lytte til localhost ved at benytte: 
+Med denne kommando stopper MySQL med at lytte på alle TCP/IP porte, og herefter benyttes MySQL’s socket-baseret forbindelse til at opnå forbindelse fra localhost. Det er også muligt at tvinge MySQL til udelukkende at lytte til localhost ved at benytte: 
 
 `bind-address=127.0.0.1`
 ### Slå “LOAD DATA LOCAL INFILE” kommando fra ###
