@@ -89,4 +89,6 @@ https://dev.mysql.com/doc/refman/5.7/en/
 
 http://www.hexatier.com/mysql-database-security-best-practices-2/
 
-https://www.upguard.com/articles/top-11-ways-to-improve-mysql-security
+https://www.upguard.com/articles/top-11-ways-to-improve-mysql-security  
+
+http://www.informationisbeautiful.net/visualizations/worlds-biggest-data-breaches-hacks/
