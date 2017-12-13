@@ -91,4 +91,8 @@ http://www.hexatier.com/mysql-database-security-best-practices-2/
 
 https://www.upguard.com/articles/top-11-ways-to-improve-mysql-security  
 
-http://www.informationisbeautiful.net/visualizations/worlds-biggest-data-breaches-hacks/
+http://www.informationisbeautiful.net/visualizations/worlds-biggest-data-breaches-hacks/  
+
+https://idatalabs.com/tech/database-management-system  
+
+https://revisionlegal.com/data-breach/2017-security-breaches/
