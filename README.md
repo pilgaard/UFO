@@ -61,7 +61,6 @@ Nu har vi fået tildelt rettigheder til vores lsd-user  og vi kan se dem ved at 
 Når vi er færdig med at lave ændringer i privilegierne skal vi slutte af med flush
 
 `FLUSH PRIVILEGES;`
-
 Nu når vi har oprettet en bruger med begrænset rettigheder kan vi i stedet for vores root bruger benytte vores lsd bruger til at lave kald fra vores web service til vores database, på denne måde kan vi bedre styre hvilke handlinger der kan laves på databasen udefra,  hvilket er en stor forbedring i forhold til sikkerheden. Så hvis der er nogle der ønsker at foretage en handling på databasen som kun vores root user har adgang til, skal vedkommende først skaffe sig adgang til serveren. 
 Vi kan også vælge at give vores root user et nyt navn, hvilket gør at en hacker der har fået adgang til serveren skal arbejde lidt mere for at få adgang til mysql, da vi ikke længere bruger standard navnet. det gør vi med følgende statement.
 `rename user 'root'@'localhost' to 'newAdminUser'@'localhost';`
@@ -70,13 +69,12 @@ Og efterfølgende bruger vi flush.
 
 `FLUSH PRIVILEGES;`
 
-#### Hvad hvis min webservice er scaled, og køre på flere ip adresser ####
+#### Hvad hvis min webservice er scaled ####
 
 I tilfælde af at man har en app der er scaled eller vil have muligheden for at kunne scale, kan vi ikke begrænse adgangen til localhost.
 I stedet for må vi begrænse adgangen til et privat netværk, hvis du ikke har styr på hvordan du gør det kan du finde en guide [her](https://www.digitalocean.com/community/tutorials/how-to-set-up-and-use-digitalocean-private-networking) som viser dig hvordan du får sat det op med digitalocean.
 
-Vi har en privat ip der hedder 46.101.###.###,  den kan findes ved at skrive ifconfig i serverens terminal.
-(Vi har udskiftede den sidste halvdel af ip adressen med hashtags da vi vil holde ip adressen til os selv.) 
+Vi har en privat ip der hedder 46.101.###.###, den kan findes ved at skrive ifconfig i serverens terminal. (Vi har udskiftede den sidste halvdel af ip adressen med hashtags da vi vil holde ip adressen til os selv.)
 
 De to første oktetter udgør netværksadressen, og de to andre er til hosten. Hver gang du starter en ny droplet op i den nuværende region, vil den private IP-adresse se sådan ud 46.101.*. * hvor de to sidste oktetter er unikke for dropletten. Brug af et % wildcard i MySQL-hosten sikrer, at alle droplets på det private netværk kan tilsluttes.
 Vi kan derfor opdatere vores bruger til at have adgang fra hele det private netværk frem for på det lokale netværk.
