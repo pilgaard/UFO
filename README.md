@@ -75,7 +75,8 @@ Og efterfølgende bruger vi flush.
 I tilfælde af at man har en app der er scaled eller vil have muligheden for at kunne scale, kan vi ikke begrænse adgangen til localhost.
 I stedet for må vi begrænse adgangen til et privat netværk, hvis du ikke har styr på hvordan du gør det kan du finde en guide [her](https://www.digitalocean.com/community/tutorials/how-to-set-up-and-use-digitalocean-private-networking) som viser dig hvordan du får sat det op med digitalocean.
 
-Vi har en privat ip der hedder 46.101.111.112, den kan findes ved at skrive ifconfig i serverens terminal. 
+Vi har en privat ip der hedder 46.101.###.###,  den kan findes ved at skrive ifconfig i serverens terminal.
+(Vi har udskiftede den sidste halvdel af ip adressen med hashtags da vi vil holde ip adressen til os selv.) 
 
 De to første oktetter udgør netværksadressen, og de to andre er til hosten. Hver gang du starter en ny droplet op i den nuværende region, vil den private IP-adresse se sådan ud 46.101.*. * hvor de to sidste oktetter er unikke for dropletten. Brug af et % wildcard i MySQL-hosten sikrer, at alle droplets på det private netværk kan tilsluttes.
 Vi kan derfor opdatere vores bruger til at have adgang fra hele det private netværk frem for på det lokale netværk.
