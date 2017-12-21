@@ -6,7 +6,7 @@ Det er vigtigt at sikre MySQL, da data er meget værdifuld i nutidens verden, og
 Hvis vi ser på Revisionlegal’s indlæg omkring Data Breaches i 2017, kan vi se at selv de største firmaer døjer med sikkerhedsproblemer. F.eks var der 89 registrerede angreb i Januar 2017, hvor det største angreb ramte mange asiatiske firmaer, såsom “NetEase” og “Sina.com”. Dette angreb lækkede omkring 1,85 milliarder brugerkonti, hvis kontooplysninger blev sat til salg på the Dark Web.
 Udover angreb på større firmaer, er selv de mindste applikationer i fare. Dette oplevede vi under udviklingen af vores LSD’er projekter, da en af grupperne var offer for en sikkerhedsfejl i MongoDB. Dette resulterede i at alt deres data blev krypteret, og at de skulle sende BitCoins til en addresse, for at få kyrpteringsnøglen til deres data
 
-Hvis nogen får adgang til din data, kan det altså have konsekvenser i form af både tyveri eller gidseltagelse.
+Hvis nogen får adgang til din data, kan det altså have konsekvenser i form af tyveri eller gidseltagelse.
 På grund af dette, vil vi forsøge at hjælpe, dig, læseren, med at øge sikkerheden i din MySQL ved at anvende nogle Best Practices indenfor MySQL sikkerhed.
 ## Bruger privilegier ##
 En root user kan være meget farlig for hele din databases sikkerhed. 
