@@ -33,9 +33,10 @@ Når vi kigger på vores brugere i vores database kan vi se, at alle brugere har
 
 Så hvis vi køre følgende kommando får vi denne besked:
 
+`mysql> UPDATE mysql.user SET Host='127.0.0.1' WHERE Host="%";`
+
 ![change output](/images/change.png)
 
-`mysql> UPDATE mysql.user SET Host='127.0.0.1' WHERE Host="%";`
 Vi kan nu se at der er blevet foretaget en ændring, og ved at køre vores select statement igen, vil vi kunne se at admin ikke længere har et procenttegn ud fra host.
 På denne måde sikrer vi at alle databasens brugere kun kan tilgå databasen igennem localhost.
 ### Begræns brugernes rettigheder til databasen ###
@@ -61,8 +62,10 @@ Nu har vi fået tildelt rettigheder til vores lsd-user  og vi kan se dem ved at 
 Når vi er færdig med at lave ændringer i privilegierne skal vi slutte af med flush
 
 `FLUSH PRIVILEGES;`
+
 Nu når vi har oprettet en bruger med begrænset rettigheder kan vi i stedet for vores root bruger benytte vores lsd bruger til at lave kald fra vores web service til vores database, på denne måde kan vi bedre styre hvilke handlinger der kan laves på databasen udefra,  hvilket er en stor forbedring i forhold til sikkerheden. Så hvis der er nogle der ønsker at foretage en handling på databasen som kun vores root user har adgang til, skal vedkommende først skaffe sig adgang til serveren. 
 Vi kan også vælge at give vores root user et nyt navn, hvilket gør at en hacker der har fået adgang til serveren skal arbejde lidt mere for at få adgang til mysql, da vi ikke længere bruger standard navnet. det gør vi med følgende statement.
+
 `rename user 'root'@'localhost' to 'newAdminUser'@'localhost';`
 
 Og efterfølgende bruger vi flush.
